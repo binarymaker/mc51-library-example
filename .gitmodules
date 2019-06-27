@@ -1,0 +1,3 @@
+[submodule "mc51-library"]
+	path = mc51-library
+	url = https://github.com/binarymaker/mc51-library

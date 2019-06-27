@@ -1,1 +1,1 @@
-"main.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(..\..\mc51-library\drivers;..\..\mc51-library\stdint) DEBUG OBJECTEXTEND PRINT(.\Listings\main.lst) TABS (2) OBJECT(.\Objects\main.obj)
+"main.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(..\mc51-library\drivers;..\mc51-library\stdint) DEBUG OBJECTEXTEND PRINT(.\Listings\main.lst) TABS (2) OBJECT(.\Objects\main.obj)

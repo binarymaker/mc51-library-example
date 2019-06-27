@@ -1,11 +1,11 @@
-C51 COMPILER V9.60.0.0   GPIO                                                              06/27/2019 15:39:10 PAGE 1   
+C51 COMPILER V9.60.0.0   GPIO                                                              06/27/2019 16:11:10 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE GPIO
 OBJECT MODULE PLACED IN .\Objects\gpio.obj
-COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\..\mc51-library\drivers\gpio.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\..\
-                    -mc51-library\drivers;..\..\mc51-library\stdint) DEBUG OBJECTEXTEND PRINT(.\Listings\gpio.lst) TABS(2) OBJECT(.\Objects\g
-                    -pio.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\..\mc51-library\drivers\gpio.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\mc5
+                    -1-library\drivers;..\mc51-library\stdint) DEBUG OBJECTEXTEND PRINT(.\Listings\gpio.lst) TABS(2) OBJECT(.\Objects\gpio.ob
+                    -j)
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   51   3          case GPIO_PORT_0:
   52   3            SET_BIT(P0, pin);
   53   3            break;
-C51 COMPILER V9.60.0.0   GPIO                                                              06/27/2019 15:39:10 PAGE 2   
+C51 COMPILER V9.60.0.0   GPIO                                                              06/27/2019 16:11:10 PAGE 2   
 
   54   3          case GPIO_PORT_1:
   55   3            SET_BIT(P1, pin);
