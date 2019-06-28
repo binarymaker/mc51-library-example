@@ -2,5 +2,5 @@
 ".\Objects\gpio.obj",
 ".\Objects\mc51-library.obj",
 ".\Objects\main.obj" 
-TO ".\Objects\gpio" 
-PRINT(".\Listings\gpio.m51") RAMSIZE(256) 
+TO ".\Objects\sw-delay" 
+PRINT(".\Listings\sw-delay.m51") RAMSIZE(256) 
