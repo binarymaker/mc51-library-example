@@ -1,5 +1,6 @@
 ".\Objects\STARTUP.obj",
 ".\Objects\main.obj",
-".\Objects\gpio.obj" 
+".\Objects\gpio.obj",
+".\Objects\mc51-library.obj" 
 TO ".\Objects\gpio" 
 PRINT(".\Listings\gpio.m51") RAMSIZE(256) 

@@ -1,9 +1,9 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/27/2019  16:11:55  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/28/2019  14:05:12  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
-C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj, .\Objects\gpio.obj TO .\Objects\gpio PRINT (.\Lis
->> tings\gpio.m51) RAMSIZE (256)
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj, .\Objects\gpio.obj, .\Objects\mc51-library.obj TO
+>>  .\Objects\gpio PRINT (.\Listings\gpio.m51) RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
@@ -13,6 +13,7 @@ INPUT MODULES INCLUDED:
   .\Objects\STARTUP.obj (?C_STARTUP)
   .\Objects\main.obj (MAIN)
   .\Objects\gpio.obj (GPIO)
+  .\Objects\mc51-library.obj (MC51_LIBRARY)
 
 
 LINK MAP OF MODULE:  .\Objects\gpio (?C_STARTUP)
@@ -23,29 +24,42 @@ LINK MAP OF MODULE:  .\Objects\gpio (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            IDATA   0008H     0001H     UNIT         ?STACK
+            DATA    0008H     0002H     UNIT         _DATA_GROUP_
+            IDATA   000AH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     07FDH                  *** GAP ***
             CODE    0800H     0043H     UNIT         ?PR?_GPIO_WRITEPIN?GPIO
-            CODE    0843H     000CH     UNIT         ?C_C51STARTUP
-            CODE    084FH     000BH     UNIT         ?PR?MAIN?MAIN
+            CODE    0843H     0031H     UNIT         ?PR?MAIN?MAIN
+            CODE    0874H     002DH     UNIT         ?PR?_GPIO_READPIN?GPIO
+            CODE    08A1H     001EH     UNIT         ?PR?_GPIO_TOGGLEPIN?GPIO
+            CODE    08BFH     0017H     UNIT         ?PR?_GPIO_PINMODE?GPIO
+            CODE    08D6H     000CH     UNIT         ?C_C51STARTUP
 
 
 
 OVERLAY MAP OF MODULE:   .\Objects\gpio (?C_STARTUP)
 
 
-SEGMENT
-  +--> CALLED SEGMENT
----------------------
-?C_C51STARTUP
+SEGMENT                            DATA_GROUP 
+  +--> CALLED SEGMENT            START    LENGTH
+------------------------------------------------
+?C_C51STARTUP                    -----    -----
   +--> ?PR?MAIN?MAIN
 
-?PR?MAIN?MAIN
+?PR?MAIN?MAIN                    -----    -----
+  +--> ?PR?_GPIO_PINMODE?GPIO
+  +--> ?PR?_GPIO_READPIN?GPIO
+  +--> ?PR?_GPIO_WRITEPIN?GPIO
+  +--> ?PR?_GPIO_TOGGLEPIN?GPIO
+
+?PR?_GPIO_PINMODE?GPIO           0008H    0002H
   +--> ?PR?_GPIO_WRITEPIN?GPIO
 
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/28/2019  14:05:12  PAGE 2
 
 
 SYMBOL TABLE OF MODULE:  .\Objects\gpio (?C_STARTUP)
@@ -54,20 +68,17 @@ SYMBOL TABLE OF MODULE:  .\Objects\gpio (?C_STARTUP)
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-  C:0843H         SEGMENT       ?C_C51STARTUP
-  I:0008H         SEGMENT       ?STACK
+  C:08D6H         SEGMENT       ?C_C51STARTUP
+  I:000AH         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/27/2019  16:11:55  PAGE 2
-
-
   D:0083H         SYMBOL        DPH
   D:0082H         SYMBOL        DPL
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:0846H         SYMBOL        IDATALOOP
+  C:08D9H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -76,18 +87,18 @@ SYMBOL TABLE OF MODULE:  .\Objects\gpio (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:0843H         SYMBOL        STARTUP1
+  C:08D6H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:0843H         LINE#         133
-  C:0845H         LINE#         134
-  C:0846H         LINE#         135
-  C:0847H         LINE#         136
-  C:0849H         LINE#         185
-  C:084CH         LINE#         196
+  C:08D6H         LINE#         133
+  C:08D8H         LINE#         134
+  C:08D9H         LINE#         135
+  C:08DAH         LINE#         136
+  C:08DCH         LINE#         185
+  C:08DFH         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        MAIN
@@ -96,18 +107,30 @@ SYMBOL TABLE OF MODULE:  .\Objects\gpio (?C_STARTUP)
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
-  C:084FH         PUBLIC        main
+  C:0843H         PUBLIC        main
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
   -------         PROC          MAIN
-  C:084FH         LINE#         3
-  C:084FH         LINE#         4
-  C:084FH         LINE#         5
-  C:084FH         LINE#         6
-  C:084FH         LINE#         7
-  C:0858H         LINE#         8
+  C:0843H         LINE#         3
+  C:0843H         LINE#         4
+  C:0843H         LINE#         6
+  C:084CH         LINE#         7
+  C:0855H         LINE#         9
+  C:0855H         LINE#         10
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/28/2019  14:05:12  PAGE 3
+
+
+  C:0855H         LINE#         11
+  C:085FH         LINE#         12
+  C:085FH         LINE#         13
+  C:0860H         LINE#         14
+  C:0862H         LINE#         16
+  C:0862H         LINE#         17
+  C:086BH         LINE#         18
+  C:086BH         LINE#         20
+  C:0872H         LINE#         21
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -119,69 +142,147 @@ SYMBOL TABLE OF MODULE:  .\Objects\gpio (?C_STARTUP)
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/27/2019  16:11:55  PAGE 3
-
-
+  C:08A1H         PUBLIC        _GPIO_TogglePin
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
+  C:0874H         PUBLIC        _GPIO_ReadPin
+  C:08BFH         PUBLIC        _GPIO_PinMode
   C:0800H         PUBLIC        _GPIO_WritePin
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
+  -------         PROC          _GPIO_PINMODE
+  D:0008H         SYMBOL        port
+  D:0009H         SYMBOL        pin
+  D:0003H         SYMBOL        mode
+  C:08BFH         LINE#         25
+  C:08C3H         LINE#         26
+  C:08C3H         LINE#         27
+  C:08C8H         LINE#         28
+  C:08C8H         LINE#         29
+  C:08CAH         LINE#         30
+  C:08CCH         LINE#         32
+  C:08CCH         LINE#         33
+  C:08D5H         LINE#         34
+  C:08D5H         LINE#         35
+  -------         ENDPROC       _GPIO_PINMODE
   -------         PROC          _GPIO_WRITEPIN
   D:0007H         SYMBOL        port
   D:0005H         SYMBOL        pin
   D:0003H         SYMBOL        state
-  C:0800H         LINE#         25
-  C:0800H         LINE#         26
-  C:0800H         LINE#         27
-  C:0803H         LINE#         28
-  C:0803H         LINE#         29
-  C:0811H         LINE#         30
-  C:0811H         LINE#         31
-  C:0811H         LINE#         32
-  C:0815H         LINE#         33
-  C:0816H         LINE#         34
-  C:0816H         LINE#         35
-  C:081AH         LINE#         36
-  C:081BH         LINE#         37
-  C:081BH         LINE#         38
-  C:081FH         LINE#         39
-  C:0820H         LINE#         40
-  C:0820H         LINE#         41
-  C:0824H         LINE#         42
-  C:0825H         LINE#         43
-  C:0825H         LINE#         44
-  C:0825H         LINE#         45
-  C:0825H         LINE#         46
-  C:0825H         LINE#         48
-  C:0825H         LINE#         49
-  C:0833H         LINE#         50
-  C:0833H         LINE#         51
-  C:0833H         LINE#         52
-  C:0836H         LINE#         53
-  C:0837H         LINE#         54
-  C:0837H         LINE#         55
-  C:083AH         LINE#         56
-  C:083BH         LINE#         57
-  C:083BH         LINE#         58
-  C:083EH         LINE#         59
-  C:083FH         LINE#         60
-  C:083FH         LINE#         61
-  C:0842H         LINE#         62
-  C:0842H         LINE#         63
-  C:0842H         LINE#         64
-  C:0842H         LINE#         65
-  C:0842H         LINE#         66
-  C:0842H         LINE#         67
+  C:0800H         LINE#         38
+  C:0800H         LINE#         39
+  C:0800H         LINE#         40
+  C:0803H         LINE#         41
+  C:0803H         LINE#         42
+  C:0811H         LINE#         43
+  C:0811H         LINE#         44
+  C:0811H         LINE#         45
+  C:0815H         LINE#         46
+  C:0816H         LINE#         47
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/28/2019  14:05:12  PAGE 4
+
+
+  C:0816H         LINE#         48
+  C:081AH         LINE#         49
+  C:081BH         LINE#         50
+  C:081BH         LINE#         51
+  C:081FH         LINE#         52
+  C:0820H         LINE#         53
+  C:0820H         LINE#         54
+  C:0824H         LINE#         55
+  C:0825H         LINE#         56
+  C:0825H         LINE#         57
+  C:0825H         LINE#         58
+  C:0825H         LINE#         59
+  C:0825H         LINE#         61
+  C:0825H         LINE#         62
+  C:0833H         LINE#         63
+  C:0833H         LINE#         64
+  C:0833H         LINE#         65
+  C:0836H         LINE#         66
+  C:0837H         LINE#         67
+  C:0837H         LINE#         68
+  C:083AH         LINE#         69
+  C:083BH         LINE#         70
+  C:083BH         LINE#         71
+  C:083EH         LINE#         72
+  C:083FH         LINE#         73
+  C:083FH         LINE#         74
+  C:0842H         LINE#         75
+  C:0842H         LINE#         76
+  C:0842H         LINE#         77
+  C:0842H         LINE#         78
+  C:0842H         LINE#         79
+  C:0842H         LINE#         80
   -------         ENDPROC       _GPIO_WRITEPIN
+  -------         PROC          _GPIO_TOGGLEPIN
+  D:0007H         SYMBOL        port
+  D:0005H         SYMBOL        pin
+  C:08A1H         LINE#         83
+  C:08A1H         LINE#         84
+  C:08A1H         LINE#         85
+  C:08AFH         LINE#         86
+  C:08AFH         LINE#         87
+  C:08AFH         LINE#         88
+  C:08B2H         LINE#         89
+  C:08B3H         LINE#         90
+  C:08B3H         LINE#         91
+  C:08B6H         LINE#         92
+  C:08B7H         LINE#         93
+  C:08B7H         LINE#         94
+  C:08BAH         LINE#         95
+  C:08BBH         LINE#         96
+  C:08BBH         LINE#         97
+  C:08BEH         LINE#         98
+  C:08BEH         LINE#         99
+  C:08BEH         LINE#         100
+  C:08BEH         LINE#         101
+  C:08BEH         LINE#         102
+  -------         ENDPROC       _GPIO_TOGGLEPIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/28/2019  14:05:12  PAGE 5
+
+
+  -------         PROC          _GPIO_READPIN
+  D:0007H         SYMBOL        port
+  D:0005H         SYMBOL        pin
+  -------         DO            
+  D:0006H         SYMBOL        state
+  -------         ENDDO         
+  C:0874H         LINE#         105
+  C:0874H         LINE#         106
+  C:0874H         LINE#         109
+  C:0882H         LINE#         110
+  C:0882H         LINE#         111
+  C:0882H         LINE#         112
+  C:0886H         LINE#         113
+  C:0888H         LINE#         114
+  C:0888H         LINE#         115
+  C:088CH         LINE#         116
+  C:088EH         LINE#         117
+  C:088EH         LINE#         118
+  C:0892H         LINE#         119
+  C:0894H         LINE#         120
+  C:0894H         LINE#         121
+  C:0898H         LINE#         122
+  C:0898H         LINE#         123
+  C:0898H         LINE#         124
+  C:0898H         LINE#         125
+  C:0898H         LINE#         127
+  C:089BH         LINE#         128
+  C:089BH         LINE#         129
+  C:089EH         LINE#         130
+  C:089EH         LINE#         132
+  C:08A0H         LINE#         133
+  -------         ENDPROC       _GPIO_READPIN
   -------         ENDMOD        GPIO
 
+  -------         MODULE        MC51_LIBRARY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  -------         ENDMOD        MC51_LIBRARY
+
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 005DH BYTE ( 4%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00E5H BYTE (11%) *
 ******************************************************************************
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/27/2019  16:11:55  PAGE 4
 
-
-
-Program Size: data=9.0 xdata=0 code=93
+Program Size: data=11.0 xdata=0 code=229
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

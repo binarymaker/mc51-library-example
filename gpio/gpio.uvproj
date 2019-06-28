@@ -389,17 +389,12 @@
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\mc51-library\drivers\gpio.c</FilePath>
+              <FilePath>..\mc51-library\drivers\gpio.c</FilePath>
             </File>
             <File>
-              <FileName>gpio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\mc51-library\drivers\gpio.h</FilePath>
-            </File>
-            <File>
-              <FileName>mc51-library.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\mc51-library\drivers\mc51-library.h</FilePath>
+              <FileName>mc51-library.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\mc51-library\drivers\mc51-library.c</FilePath>
             </File>
           </Files>
         </Group>
