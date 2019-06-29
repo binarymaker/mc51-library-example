@@ -1,0 +1,69 @@
+C51 COMPILER V9.60.0.0   CHARLCD                                                           06/29/2019 08:51:24 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE CHARLCD
+OBJECT MODULE PLACED IN .\Objects\charlcd.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\mc51-library\modules\charlcd.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\mc5
+                    -1-library\modules;..\mc51-library\drivers;..\mc51-library\stdint) DEBUG OBJECTEXTEND PRINT(.\Listings\charlcd.lst) TABS(
+                    -2) OBJECT(.\Objects\charlcd.obj)
+
+line level    source
+
+   1          
+   2          /**
+   3            ******************************************************************************
+   4            * ______  _                             ___  ___        _               
+   5            * | ___ \(_)                            |  \/  |       | |              
+   6            * | |_/ / _  _ __    __ _  _ __  _   _  | .  . |  __ _ | | __ ___  _ __ 
+   7            * | ___ \| || '_ \  / _` || '__|| | | | | |\/| | / _` || |/ // _ \| '__|
+   8            * | |_/ /| || | | || (_| || |   | |_| | | |  | || (_| ||   <|  __/| |   
+   9            * \____/ |_||_| |_| \__,_||_|    \__, | \_|  |_/ \__,_||_|\_\\___||_|   
+  10            *                                 __/ |                                 
+  11            *                                |___/                                  
+  12            *                                                                       
+  13            * Copyright (C) 2019 Binary Maker - All Rights Reserved
+  14            *
+  15            * This program and the accompanying materials are made available
+  16            * under the terms described in the LICENSE file which accompanies
+  17            * this distribution.
+  18            * Written by Binary Maker <https://github.com/binarymaker>
+  19            ******************************************************************************
+  20            */
+  21          #include "charlcd.h"
+  22          
+  23          void
+  24          CHARLCD_init(CHARLCD_t *context)
+  25          {
+  26   1        uint8_t i;
+  27   1        
+  28   1        GPIO_ModePin(context->regSelect_pin.port,
+  29   1                     context->regSelect_pin.pin,
+  30   1                     GPIO_MODE_OUTPUT);
+  31   1        
+  32   1        GPIO_ModePin(context->enable_pin.port,
+  33   1                     context->enable_pin.pin,
+  34   1                     GPIO_MODE_OUTPUT);
+  35   1        
+  36   1        for (i = 0; i < 4; i++)
+  37   1        {
+  38   2          GPIO_ModePin(context->data_pin[i].port,
+  39   2                       context->data_pin[i].pin,
+  40   2                       GPIO_MODE_OUTPUT);
+  41   2        }
+  42   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    104    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+C51 COMPILER V9.60.0.0   CHARLCD                                                           06/29/2019 08:51:24 PAGE 2   
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

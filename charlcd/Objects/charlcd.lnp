@@ -1,0 +1,7 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj",
+".\Objects\charlcd.obj",
+".\Objects\gpio.obj",
+".\Objects\mc51-library.obj" 
+TO ".\Objects\charlcd" 
+PRINT(".\Listings\charlcd.m51")
