@@ -8,9 +8,6 @@ uint8_t i;
 void
 main()
 {
-  
-  display.size_type = CHARLCD_TYPE_16X2;
-  
   display.regSelect_pin.port = GPIO_PORT_1;
   display.regSelect_pin.pin = GPIO_PIN_0;
   
@@ -20,11 +17,17 @@ main()
   for (i = 0; i < 4; i++)
   {
     display.data_pin[i].port = GPIO_PORT_1;
-    display.data_pin[i].pin = GPIO_PIN_2 + i;
+    display.data_pin[i].pin = GPIO_PIN_2 << i;
   }
   
-  CHARLCD_init(&display);
+  CHARLCD_init(&display, 2, 16);
   
+  CHARLCD_SetCursor(&display, 0, 2);
+  CHARLCD_PrintString(&display, "Binary Maker");
+
+  CHARLCD_SetCursor(&display, 1, 5);
+  CHARLCD_PrintString(&display, "MC-51");
+
   while(1)
   {
     

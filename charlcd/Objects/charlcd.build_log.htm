@@ -5,10 +5,10 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.27.1.0
 Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: gokul raja, winner, LIC=----
+License Information: gokul raja, winner, LIC=GM8PC-7CMXL-RI75V-P5MNF-UWXZ1-IU2PX
  
 Tool Versions:
-Toolchain:       PK51 Prof. Develpers Kit  Version: 9.60.0.0
+Toolchain:       PK51 Prof. Developers Kit  Version: 9.60.0.0
 Toolchain Path:  C:\Keil_v5\C51\BIN
 C Compiler:      C51.exe V9.60.0.0
 Assembler:       A51.exe V8.2.7.0
@@ -24,16 +24,21 @@ Project File Date:  06/29/2019
 <h2>Output:</h2>
 Build target 'Target 1'
 compiling main.c...
+compiling charlcd.c...
+..\mc51-library\modules\charlcd.c(172): warning C280: 'context': unreferenced local variable
+..\mc51-library\modules\charlcd.c(172): warning C280: 'line': unreferenced local variable
+..\mc51-library\modules\charlcd.c(172): warning C280: 'col': unreferenced local variable
 linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CHARLCD_PRINTINTEGER?CHARLCD
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPIO_TOGGLEPIN?GPIO
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPIO_READPIN?GPIO
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?__DELAY_MS?MC51_LIBRARY
-Program Size: data=37.0 xdata=0 code=1188
-".\Objects\charlcd" - 0 Error(s), 3 Warning(s).
-Build Time Elapsed:  00:00:00
+Program Size: data=59.0 xdata=0 code=2002
+creating hex file from ".\Objects\charlcd"...
+".\Objects\charlcd" - 0 Error(s), 6 Warning(s).
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

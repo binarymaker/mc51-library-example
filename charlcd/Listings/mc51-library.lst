@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MC51_LIBRARY                                                      06/29/2019 08:48:31 PAGE 1   
+C51 COMPILER V9.60.0.0   MC51_LIBRARY                                                      06/29/2019 16:56:27 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MC51_LIBRARY
@@ -62,7 +62,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =     87    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
-C51 COMPILER V9.60.0.0   MC51_LIBRARY                                                      06/29/2019 08:48:31 PAGE 2   
+C51 COMPILER V9.60.0.0   MC51_LIBRARY                                                      06/29/2019 16:56:27 PAGE 2   
 
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----       8

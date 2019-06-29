@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              06/29/2019 09:00:50 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              06/29/2019 17:15:01 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -18,36 +18,39 @@ line level    source
    8          void
    9          main()
   10          {
-  11   1        
-  12   1        display.size_type = CHARLCD_TYPE_16X2;
+  11   1        display.regSelect_pin.port = GPIO_PORT_1;
+  12   1        display.regSelect_pin.pin = GPIO_PIN_0;
   13   1        
-  14   1        display.regSelect_pin.port = GPIO_PORT_1;
-  15   1        display.regSelect_pin.pin = GPIO_PIN_0;
+  14   1        display.enable_pin.port = GPIO_PORT_1;
+  15   1        display.enable_pin.pin = GPIO_PIN_1;
   16   1        
-  17   1        display.enable_pin.port = GPIO_PORT_1;
-  18   1        display.enable_pin.pin = GPIO_PIN_1;
-  19   1        
-  20   1        for (i = 0; i < 4; i++)
-  21   1        {
-  22   2          display.data_pin[i].port = GPIO_PORT_1;
-  23   2          display.data_pin[i].pin = GPIO_PIN_2 + i;
-  24   2        }
-  25   1        
-  26   1        CHARLCD_init(&display);
-  27   1        
-  28   1        while(1)
-  29   1        {
-  30   2          
-  31   2        }
-  32   1      }
+  17   1        for (i = 0; i < 4; i++)
+  18   1        {
+  19   2          display.data_pin[i].port = GPIO_PORT_1;
+  20   2          display.data_pin[i].pin = GPIO_PIN_2 << i;
+  21   2        }
+  22   1        
+  23   1        CHARLCD_init(&display, 2, 16);
+  24   1        
+  25   1        CHARLCD_SetCursor(&display, 0, 2);
+  26   1        CHARLCD_PrintString(&display, "Binary Maker");
+  27   1      
+  28   1        CHARLCD_SetCursor(&display, 1, 5);
+  29   1        CHARLCD_PrintString(&display, "MC-51");
+  30   1      
+  31   1        while(1)
+  32   1        {
+  33   2          
+  34   2        }
+  35   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     67    ----
-   CONSTANT SIZE    =   ----    ----
+   CODE SIZE        =    142    ----
+   CONSTANT SIZE    =     19    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     14    ----
+   DATA SIZE        =     20    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

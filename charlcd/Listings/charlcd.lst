@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   CHARLCD                                                           06/29/2019 08:51:24 PAGE 1   
+C51 COMPILER V9.60.0.0   CHARLCD                                                           06/29/2019 17:15:01 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE CHARLCD
@@ -32,38 +32,178 @@ line level    source
   21          #include "charlcd.h"
   22          
   23          void
-  24          CHARLCD_init(CHARLCD_t *context)
+  24          CHARLCD_init(CHARLCD_t *context, uint8_t line, uint8_t col)
   25          {
   26   1        uint8_t i;
   27   1        
-  28   1        GPIO_ModePin(context->regSelect_pin.port,
-  29   1                     context->regSelect_pin.pin,
-  30   1                     GPIO_MODE_OUTPUT);
-  31   1        
-  32   1        GPIO_ModePin(context->enable_pin.port,
-  33   1                     context->enable_pin.pin,
-  34   1                     GPIO_MODE_OUTPUT);
-  35   1        
-  36   1        for (i = 0; i < 4; i++)
-  37   1        {
-  38   2          GPIO_ModePin(context->data_pin[i].port,
-  39   2                       context->data_pin[i].pin,
-  40   2                       GPIO_MODE_OUTPUT);
-  41   2        }
-  42   1      }
+  28   1        context->row_offset[0] = 0x00;
+  29   1        context->row_offset[1] = 0x40;
+  30   1        context->row_offset[3] = col;
+  31   1        context->row_offset[4] = 0x40 + col;
+  32   1        
+  33   1        GPIO_ModePin(context->regSelect_pin.port,
+  34   1                     context->regSelect_pin.pin,
+  35   1                     GPIO_MODE_OUTPUT);
+  36   1        
+  37   1        GPIO_ModePin(context->enable_pin.port,
+  38   1                     context->enable_pin.pin,
+  39   1                     GPIO_MODE_OUTPUT);
+  40   1        
+  41   1        for (i = 0; i < 4; i++)
+  42   1        {
+  43   2          GPIO_ModePin(context->data_pin[i].port,
+  44   2                       context->data_pin[i].pin,
+  45   2                       GPIO_MODE_OUTPUT);
+  46   2        }
+  47   1      
+  48   1        /* Init sequnce as per datasheet */
+  49   1        _delay_ms(100);                   /* 100ms wait for display stable */
+  50   1        CHARLCD_Write(context, 0x03);
+  51   1        _delay_ms(5);                     /* 4.1ms wait */
+  52   1        CHARLCD_Write(context, 0x03);
+  53   1        _delay_us(100);                   /* 100us wait */
+C51 COMPILER V9.60.0.0   CHARLCD                                                           06/29/2019 17:15:01 PAGE 2   
+
+  54   1        CHARLCD_Write(context, 0x03);
+  55   1        _delay_us(100);                   /* 100us wait */
+  56   1        CHARLCD_Write(context, 0x02);
+  57   1        
+  58   1        /* Function set config ------------------------------------------------- */
+  59   1        context->reg_functionSet = CHARLCD_FUNCTIONSET | CHARLCD_4BITMODE |
+  60   1                                   CHARLCD_5x8DOTS;
+  61   1        
+  62   1        if (line > 0x01)
+  63   1        {
+  64   2          context->reg_functionSet |= CHARLCD_2LINE;
+  65   2        }
+  66   1        else
+  67   1        {
+  68   2          context->reg_functionSet |= CHARLCD_1LINE;
+  69   2        }
+  70   1        
+  71   1        CHARLCD_Command(context, context->reg_functionSet);
+  72   1        
+  73   1        /* Display control config ----------------------------------------------- */
+  74   1        
+  75   1        context->reg_displayControl = CHARLCD_DISPLAYCONTROL | CHARLCD_DISPLAYON |
+  76   1                                      CHARLCD_CURSOROFF | CHARLCD_BLINKOFF;
+  77   1        
+  78   1        CHARLCD_Command(context, context->reg_displayControl);
+  79   1      
+  80   1        /* Clear display -------------------------------------------------------- */
+  81   1        CHARLCD_Command(context, CHARLCD_CLEARDISPLAY);
+  82   1        _delay_ms(10);
+  83   1        
+  84   1        /* Entry mode / cursor increment config --------------------------------- */
+  85   1        context->reg_modeSet = CHARLCD_ENTRYMODESET | CHARLCD_ENTRYLEFT | 
+  86   1                                CHARLCD_ENTRYSHIFTLEFT;
+  87   1        
+  88   1        CHARLCD_Command(context, context->reg_modeSet);
+  89   1      }
+  90          
+  91          void
+  92          CHARLCD_EnablePulse(CHARLCD_t *context)
+  93          {
+  94   1        GPIO_WritePin(context->enable_pin.port,
+  95   1                      context->enable_pin.pin,
+  96   1                      GPIO_PIN_SET);
+  97   1        
+  98   1        _delay_us(100);
+  99   1      
+ 100   1        GPIO_WritePin(context->enable_pin.port,
+ 101   1                      context->enable_pin.pin,
+ 102   1                      GPIO_PIN_RESET);
+ 103   1      }
+ 104          
+ 105          void
+ 106          CHARLCD_Write(CHARLCD_t *context, uint8_t ch)
+ 107          {
+ 108   1        uint8_t i;
+ 109   1      
+ 110   1        for (i = 0; i < 4; i++)
+ 111   1        {
+ 112   2          GPIO_WritePin(context->data_pin[i].port,
+ 113   2                        context->data_pin[i].pin,
+ 114   2                        (ch >> i) & 0x01);
+ 115   2        }
+C51 COMPILER V9.60.0.0   CHARLCD                                                           06/29/2019 17:15:01 PAGE 3   
+
+ 116   1        
+ 117   1        CHARLCD_EnablePulse(context);
+ 118   1      }
+ 119          
+ 120          void
+ 121          CHARLCD_Command(CHARLCD_t *context, uint8_t cmd)
+ 122          {
+ 123   1        uint8_t msb;
+ 124   1        uint8_t lsb;
+ 125   1        
+ 126   1        GPIO_WritePin(context->regSelect_pin.port,
+ 127   1                      context->regSelect_pin.pin,
+ 128   1                      GPIO_PIN_RESET);
+ 129   1      
+ 130   1        msb = (cmd >> 4) & 0x0F;
+ 131   1        lsb = cmd  & 0x0F;
+ 132   1        
+ 133   1        CHARLCD_Write(context, msb);
+ 134   1        CHARLCD_Write(context, lsb);
+ 135   1      }
+ 136          
+ 137          void
+ 138          CHARLCD_Data(CHARLCD_t *context, uint8_t cmd)
+ 139          {
+ 140   1        uint8_t msb;
+ 141   1        uint8_t lsb;
+ 142   1        
+ 143   1        GPIO_WritePin(context->regSelect_pin.port,
+ 144   1                      context->regSelect_pin.pin,
+ 145   1                      GPIO_PIN_SET);
+ 146   1      
+ 147   1        msb = (cmd >> 4) & 0x0F;
+ 148   1        lsb = cmd  & 0x0F;
+ 149   1        
+ 150   1        CHARLCD_Write(context, msb);
+ 151   1        CHARLCD_Write(context, lsb);
+ 152   1      }
+ 153          
+ 154          void
+ 155          CHARLCD_SetCursor(CHARLCD_t *context, uint8_t line, uint8_t col){
+ 156   1        CHARLCD_Command(context , CHARLCD_SETDDRAMADDR | (context->row_offset[line] + col));
+ 157   1      }
+ 158          
+ 159          void
+ 160          CHARLCD_PrintString(CHARLCD_t *context, char *msg)
+ 161          {
+ 162   1        uint16_t i = 0;
+ 163   1        
+ 164   1        while (msg[i] != '\0')
+ 165   1        {
+ 166   2          CHARLCD_Data(context, (uint8_t)msg[i]);
+ 167   2          i++;
+ 168   2        }
+ 169   1      }
+ 170          
+ 171          void
+ 172          CHARLCD_PrintInteger(CHARLCD_t *context, uint8_t line, uint8_t col)
+ 173          {
+ 174   1        _delay_ms(1);
+ 175   1      }
+*** WARNING C280 IN LINE 172 OF ..\mc51-library\modules\charlcd.c: 'context': unreferenced local variable
+*** WARNING C280 IN LINE 172 OF ..\mc51-library\modules\charlcd.c: 'line': unreferenced local variable
+C51 COMPILER V9.60.0.0   CHARLCD                                                           06/29/2019 17:15:01 PAGE 4   
+
+*** WARNING C280 IN LINE 172 OF ..\mc51-library\modules\charlcd.c: 'col': unreferenced local variable
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    104    ----
+   CODE SIZE        =    747    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----       4
+   DATA SIZE        =   ----      42
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
-C51 COMPILER V9.60.0.0   CHARLCD                                                           06/29/2019 08:51:24 PAGE 2   
 
-
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  3 WARNING(S),  0 ERROR(S)
