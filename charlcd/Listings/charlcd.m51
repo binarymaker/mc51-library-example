@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/29/2019  17:15:01  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    07/01/2019  16:07:17  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -39,88 +39,101 @@ LINK MAP OF MODULE:  .\Objects\charlcd (?C_STARTUP)
             DATA    0008H     0019H     UNIT         _DATA_GROUP_
             DATA    0021H     0014H     UNIT         ?DT?MAIN
             DATA    0035H     0005H     UNIT         ?DT?_CHARLCD_PRINTINTEGER?CHARLCD
-            IDATA   003AH     0001H     UNIT         ?STACK
+            DATA    003AH     0003H     UNIT         ?DT?_CHARLCD_DISPLAY?CHARLCD
+            DATA    003DH     0003H     UNIT         ?DT?_CHARLCD_CURSOR?CHARLCD
+            DATA    0040H     0003H     UNIT         ?DT?_CHARLCD_CURSORBLINK?CHARLCD
+            DATA    0043H     0003H     UNIT         ?DT?_CHARLCD_PRINTRIGHTTOLEFT?CHARLCD
+            IDATA   0046H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
             CODE    0003H     033BH     UNIT         ?C?LIB_CODE
             CODE    033EH     0179H     UNIT         ?PR?_CHARLCD_INIT?CHARLCD
-            CODE    04B7H     008EH     UNIT         ?PR?MAIN?MAIN
-            CODE    0545H     005CH     UNIT         ?PR?_CHARLCD_WRITE?CHARLCD
-            CODE    05A1H     0043H     UNIT         ?PR?_GPIO_WRITEPIN?GPIO
-            CODE    05E4H     003DH     UNIT         ?PR?_CHARLCD_ENABLEPULSE?CHARLCD
-            CODE    0621H     0038H     UNIT         ?PR?_CHARLCD_COMMAND?CHARLCD
-            CODE    0659H     0038H     UNIT         ?PR?_CHARLCD_DATA?CHARLCD
-            CODE    0691H     0035H     UNIT         ?PR?__DELAY_MS?MC51_LIBRARY
-            CODE    06C6H     0032H     UNIT         ?PR?_CHARLCD_PRINTSTRING?CHARLCD
-            CODE    06F8H     002DH     UNIT         ?PR?_GPIO_READPIN?GPIO
-            CODE    0725H     0024H     UNIT         ?PR?_CHARLCD_SETCURSOR?CHARLCD
-            CODE    0749H     0022H     UNIT         ?PR?__DELAY_US?MC51_LIBRARY
-            CODE    076BH     001EH     UNIT         ?PR?_GPIO_TOGGLEPIN?GPIO
-            CODE    0789H     0017H     UNIT         ?PR?_GPIO_MODEPIN?GPIO
-            CODE    07A0H     0013H     UNIT         ?CO?MAIN
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/29/2019  17:15:01  PAGE 2
+            CODE    04B7H     0099H     UNIT         ?PR?MAIN?MAIN
+            CODE    0550H     005CH     UNIT         ?PR?_CHARLCD_WRITE?CHARLCD
+            CODE    05ACH     0050H     UNIT         ?CO?MAIN
+            CODE    05FCH     0043H     UNIT         ?PR?_GPIO_WRITEPIN?GPIO
+            CODE    063FH     003DH     UNIT         ?PR?_CHARLCD_ENABLEPULSE?CHARLCD
+            CODE    067CH     003AH     UNIT         ?PR?_CHARLCD_DISPLAY?CHARLCD
+            CODE    06B6H     003AH     UNIT         ?PR?_CHARLCD_CURSOR?CHARLCD
+            CODE    06F0H     003AH     UNIT         ?PR?_CHARLCD_CURSORBLINK?CHARLCD
+            CODE    072AH     0038H     UNIT         ?PR?_CHARLCD_COMMAND?CHARLCD
+            CODE    0762H     0038H     UNIT         ?PR?_CHARLCD_DATA?CHARLCD
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 2
 
 
-            CODE    07B3H     0013H     UNIT         ?PR?_CHARLCD_PRINTINTEGER?CHARLCD
-            CODE    07C6H     000CH     UNIT         ?C_C51STARTUP
+            CODE    079AH     0035H     UNIT         ?PR?__DELAY_MS?MC51_LIBRARY
+            CODE    07CFH     0032H     UNIT         ?PR?_CHARLCD_PRINTSTRING?CHARLCD
+            CODE    0801H     002DH     UNIT         ?PR?_GPIO_READPIN?GPIO
+            CODE    082EH     0025H     UNIT         ?PR?_CHARLCD_PRINTRIGHTTOLEFT?CHARLCD
+            CODE    0853H     0024H     UNIT         ?PR?_CHARLCD_SETCURSOR?CHARLCD
+            CODE    0877H     0022H     UNIT         ?PR?__DELAY_US?MC51_LIBRARY
+            CODE    0899H     001EH     UNIT         ?PR?_GPIO_TOGGLEPIN?GPIO
+            CODE    08B7H     0017H     UNIT         ?PR?_GPIO_MODEPIN?GPIO
+            CODE    08CEH     0013H     UNIT         ?PR?_CHARLCD_PRINTINTEGER?CHARLCD
+            CODE    08E1H     0010H     UNIT         ?PR?_CHARLCD_CLEAR?CHARLCD
+            CODE    08F1H     0010H     UNIT         ?PR?_CHARLCD_HOME?CHARLCD
+            CODE    0901H     000CH     UNIT         ?C_C51STARTUP
+            CODE    090DH     0005H     UNIT         ?PR?_CHARLCD_SCROLLDISPLAYLEFT?CHARLCD
+            CODE    0912H     0005H     UNIT         ?PR?_CHARLCD_SCROLLDISPLAYRIGHT?CHARLCD
 
 
 
 OVERLAY MAP OF MODULE:   .\Objects\charlcd (?C_STARTUP)
 
 
-SEGMENT                                     DATA_GROUP 
-  +--> CALLED SEGMENT                     START    LENGTH
----------------------------------------------------------
-?C_C51STARTUP                             -----    -----
+SEGMENT                                           DATA_GROUP 
+  +--> CALLED SEGMENT                           START    LENGTH
+---------------------------------------------------------------
+?C_C51STARTUP                                   -----    -----
   +--> ?PR?MAIN?MAIN
 
-?PR?MAIN?MAIN                             -----    -----
+?PR?MAIN?MAIN                                   -----    -----
   +--> ?PR?_CHARLCD_INIT?CHARLCD
   +--> ?PR?_CHARLCD_SETCURSOR?CHARLCD
   +--> ?CO?MAIN
   +--> ?PR?_CHARLCD_PRINTSTRING?CHARLCD
+  +--> ?PR?__DELAY_MS?MC51_LIBRARY
 
-?PR?_CHARLCD_INIT?CHARLCD                 0008H    0006H
+?PR?_CHARLCD_INIT?CHARLCD                       0008H    0006H
   +--> ?PR?_GPIO_MODEPIN?GPIO
   +--> ?PR?__DELAY_MS?MC51_LIBRARY
   +--> ?PR?_CHARLCD_WRITE?CHARLCD
   +--> ?PR?__DELAY_US?MC51_LIBRARY
   +--> ?PR?_CHARLCD_COMMAND?CHARLCD
 
-?PR?_GPIO_MODEPIN?GPIO                    000EH    0002H
+?PR?_GPIO_MODEPIN?GPIO                          000EH    0002H
   +--> ?PR?_GPIO_WRITEPIN?GPIO
 
-?PR?__DELAY_MS?MC51_LIBRARY               000EH    0004H
+?PR?__DELAY_MS?MC51_LIBRARY                     000EH    0004H
   +--> ?PR?__DELAY_US?MC51_LIBRARY
 
-?PR?__DELAY_US?MC51_LIBRARY               001DH    0004H
+?PR?__DELAY_US?MC51_LIBRARY                     001DH    0004H
 
-?PR?_CHARLCD_WRITE?CHARLCD                0015H    0005H
+?PR?_CHARLCD_WRITE?CHARLCD                      0015H    0005H
   +--> ?PR?_GPIO_WRITEPIN?GPIO
   +--> ?PR?_CHARLCD_ENABLEPULSE?CHARLCD
 
-?PR?_CHARLCD_ENABLEPULSE?CHARLCD          001AH    0003H
+?PR?_CHARLCD_ENABLEPULSE?CHARLCD                001AH    0003H
   +--> ?PR?_GPIO_WRITEPIN?GPIO
   +--> ?PR?__DELAY_US?MC51_LIBRARY
 
-?PR?_CHARLCD_COMMAND?CHARLCD              000EH    0005H
+?PR?_CHARLCD_COMMAND?CHARLCD                    000EH    0005H
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 3
+
+
   +--> ?PR?_GPIO_WRITEPIN?GPIO
   +--> ?PR?_CHARLCD_WRITE?CHARLCD
 
-?PR?_CHARLCD_SETCURSOR?CHARLCD            0008H    0005H
+?PR?_CHARLCD_SETCURSOR?CHARLCD                  0008H    0005H
   +--> ?PR?_CHARLCD_COMMAND?CHARLCD
 
-?PR?_CHARLCD_PRINTSTRING?CHARLCD          0008H    0008H
+?PR?_CHARLCD_PRINTSTRING?CHARLCD                0008H    0008H
   +--> ?PR?_CHARLCD_DATA?CHARLCD
 
-?PR?_CHARLCD_DATA?CHARLCD                 0010H    0005H
+?PR?_CHARLCD_DATA?CHARLCD                       0010H    0005H
   +--> ?PR?_GPIO_WRITEPIN?GPIO
   +--> ?PR?_CHARLCD_WRITE?CHARLCD
-
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/29/2019  17:15:01  PAGE 3
-
 
 
 
@@ -130,8 +143,8 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-  C:07C6H         SEGMENT       ?C_C51STARTUP
-  I:003AH         SEGMENT       ?STACK
+  C:0901H         SEGMENT       ?C_C51STARTUP
+  I:0046H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
@@ -140,7 +153,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:07C9H         SYMBOL        IDATALOOP
+  C:0904H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -149,23 +162,26 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:07C6H         SYMBOL        STARTUP1
+  C:0901H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:07C6H         LINE#         133
-  C:07C8H         LINE#         134
-  C:07C9H         LINE#         135
-  C:07CAH         LINE#         136
-  C:07CCH         LINE#         185
-  C:07CFH         LINE#         196
+  C:0901H         LINE#         133
+  C:0903H         LINE#         134
+  C:0904H         LINE#         135
+  C:0905H         LINE#         136
+  C:0907H         LINE#         185
+  C:090AH         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 4
+
+
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
@@ -179,9 +195,6 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   -------         PROC          MAIN
   C:04B7H         LINE#         9
   C:04B7H         LINE#         10
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/29/2019  17:15:01  PAGE 4
-
-
   C:04B7H         LINE#         11
   C:04BAH         LINE#         12
   C:04BDH         LINE#         14
@@ -196,9 +209,8 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   C:0511H         LINE#         26
   C:0523H         LINE#         28
   C:0531H         LINE#         29
-  C:0543H         LINE#         31
-  C:0543H         LINE#         32
-  C:0543H         LINE#         34
+  C:0543H         LINE#         30
+  C:054EH         LINE#         33
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -206,19 +218,30 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
-  C:0725H         PUBLIC        _CHARLCD_SetCursor
+  C:0853H         PUBLIC        _CHARLCD_SetCursor
   C:033EH         PUBLIC        _CHARLCD_init
   D:00A8H         PUBLIC        IE
-  C:0621H         PUBLIC        _CHARLCD_Command
+  C:072AH         PUBLIC        _CHARLCD_Command
   D:00B8H         PUBLIC        IP
-  C:05E4H         PUBLIC        _CHARLCD_EnablePulse
+  C:0912H         PUBLIC        _CHARLCD_ScrollDisplayRight
+  C:063FH         PUBLIC        _CHARLCD_EnablePulse
+  C:067CH         PUBLIC        _CHARLCD_Display
+  C:090DH         PUBLIC        _CHARLCD_ScrollDisplayLeft
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:07B3H         PUBLIC        _CHARLCD_PrintInteger
-  C:0659H         PUBLIC        _CHARLCD_Data
-  C:06C6H         PUBLIC        _CHARLCD_PrintString
-  C:054DH         PUBLIC        _CHARLCD_Write
+  C:08CEH         PUBLIC        _CHARLCD_PrintInteger
+  C:082EH         PUBLIC        _CHARLCD_PrintRightToLeft
+  C:08E1H         PUBLIC        _CHARLCD_Clear
+  C:06F0H         PUBLIC        _CHARLCD_CursorBlink
+  C:0762H         PUBLIC        _CHARLCD_Data
+  C:06B6H         PUBLIC        _CHARLCD_Cursor
+  C:08F1H         PUBLIC        _CHARLCD_Home
+  C:07CFH         PUBLIC        _CHARLCD_PrintString
+  C:0558H         PUBLIC        _CHARLCD_Write
   D:00C8H         PUBLIC        T2CON
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 5
+
+
   D:00D0H         PUBLIC        PSW
   -------         PROC          _CHARLCD_INIT
   D:0008H         SYMBOL        context
@@ -239,9 +262,6 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   C:039EH         LINE#         42
   C:039EH         LINE#         43
   C:03C1H         LINE#         46
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/29/2019  17:15:01  PAGE 5
-
-
   C:03C5H         LINE#         49
   C:03D0H         LINE#         50
   C:03D3H         LINE#         51
@@ -268,29 +288,32 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   -------         ENDPROC       _CHARLCD_INIT
   -------         PROC          _CHARLCD_ENABLEPULSE
   D:001AH         SYMBOL        context
-  C:05E4H         LINE#         92
-  C:05EAH         LINE#         93
-  C:05EAH         LINE#         94
-  C:05FDH         LINE#         98
-  C:0608H         LINE#         100
+  C:063FH         LINE#         93
+  C:0645H         LINE#         94
+  C:0645H         LINE#         95
+  C:0658H         LINE#         99
+  C:0663H         LINE#         101
   -------         ENDPROC       _CHARLCD_ENABLEPULSE
-  C:0545H         SYMBOL        L?0024
-  -------         PROC          L?0023
-  -------         ENDPROC       L?0023
-  C:0545H         SYMBOL        L?0024
+  C:0550H         SYMBOL        L?0041
+  -------         PROC          L?0040
+  -------         ENDPROC       L?0040
+  C:0550H         SYMBOL        L?0041
   -------         PROC          _CHARLCD_WRITE
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 6
+
+
   D:0015H         SYMBOL        context
   D:0018H         SYMBOL        ch
   -------         DO            
   D:0019H         SYMBOL        i
   -------         ENDDO         
-  C:054DH         LINE#         106
-  C:0555H         LINE#         107
-  C:0555H         LINE#         110
-  C:0563H         LINE#         111
-  C:0563H         LINE#         112
-  C:0594H         LINE#         115
-  C:0598H         LINE#         117
+  C:0558H         LINE#         107
+  C:0560H         LINE#         108
+  C:0560H         LINE#         111
+  C:056EH         LINE#         112
+  C:056EH         LINE#         113
+  C:059FH         LINE#         116
+  C:05A3H         LINE#         118
   -------         ENDPROC       _CHARLCD_WRITE
   -------         PROC          _CHARLCD_COMMAND
   D:000EH         SYMBOL        context
@@ -299,16 +322,13 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   D:0005H         SYMBOL        msb
   D:0012H         SYMBOL        lsb
   -------         ENDDO         
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/29/2019  17:15:01  PAGE 6
-
-
-  C:0621H         LINE#         121
-  C:0629H         LINE#         122
-  C:0629H         LINE#         126
-  C:0639H         LINE#         130
-  C:063FH         LINE#         131
-  C:0645H         LINE#         133
-  C:064EH         LINE#         134
+  C:072AH         LINE#         122
+  C:0732H         LINE#         123
+  C:0732H         LINE#         127
+  C:0742H         LINE#         131
+  C:0748H         LINE#         132
+  C:074EH         LINE#         134
+  C:0757H         LINE#         135
   -------         ENDPROC       _CHARLCD_COMMAND
   -------         PROC          _CHARLCD_DATA
   D:0010H         SYMBOL        context
@@ -317,51 +337,129 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   D:0005H         SYMBOL        msb
   D:0014H         SYMBOL        lsb
   -------         ENDDO         
-  C:0659H         LINE#         138
-  C:0661H         LINE#         139
-  C:0661H         LINE#         143
-  C:0671H         LINE#         147
-  C:0677H         LINE#         148
-  C:067DH         LINE#         150
-  C:0686H         LINE#         151
+  C:0762H         LINE#         139
+  C:076AH         LINE#         140
+  C:076AH         LINE#         144
+  C:077AH         LINE#         148
+  C:0780H         LINE#         149
+  C:0786H         LINE#         151
+  C:078FH         LINE#         152
   -------         ENDPROC       _CHARLCD_DATA
   -------         PROC          _CHARLCD_SETCURSOR
   D:0008H         SYMBOL        context
   D:0005H         SYMBOL        line
   D:000CH         SYMBOL        col
-  C:0725H         LINE#         155
-  C:072BH         LINE#         156
+  C:0853H         LINE#         156
+  C:0859H         LINE#         157
   -------         ENDPROC       _CHARLCD_SETCURSOR
+  -------         PROC          _CHARLCD_CLEAR
+  D:0001H         SYMBOL        context
+  C:08E1H         LINE#         162
+  C:08E1H         LINE#         163
+  C:08E1H         LINE#         164
+  C:08E6H         LINE#         165
+  -------         ENDPROC       _CHARLCD_CLEAR
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 7
+
+
+  -------         PROC          _CHARLCD_HOME
+  D:0001H         SYMBOL        context
+  C:08F1H         LINE#         169
+  C:08F1H         LINE#         170
+  C:08F1H         LINE#         171
+  C:08F6H         LINE#         172
+  -------         ENDPROC       _CHARLCD_HOME
+  -------         PROC          _CHARLCD_DISPLAY
+  D:003AH         SYMBOL        context
+  D:0005H         SYMBOL        enable
+  C:067CH         LINE#         176
+  C:0682H         LINE#         177
+  C:0682H         LINE#         178
+  C:0685H         LINE#         179
+  C:0685H         LINE#         180
+  C:0691H         LINE#         181
+  C:0693H         LINE#         183
+  C:0693H         LINE#         184
+  C:06A6H         LINE#         185
+  C:06A6H         LINE#         187
+  -------         ENDPROC       _CHARLCD_DISPLAY
+  -------         PROC          _CHARLCD_CURSOR
+  D:003DH         SYMBOL        context
+  D:0005H         SYMBOL        enable
+  C:06B6H         LINE#         191
+  C:06BCH         LINE#         192
+  C:06BCH         LINE#         193
+  C:06BFH         LINE#         194
+  C:06BFH         LINE#         195
+  C:06CBH         LINE#         196
+  C:06CDH         LINE#         198
+  C:06CDH         LINE#         199
+  C:06E0H         LINE#         200
+  C:06E0H         LINE#         202
+  -------         ENDPROC       _CHARLCD_CURSOR
+  -------         PROC          _CHARLCD_CURSORBLINK
+  D:0040H         SYMBOL        context
+  D:0005H         SYMBOL        enable
+  C:06F0H         LINE#         206
+  C:06F6H         LINE#         207
+  C:06F6H         LINE#         208
+  C:06F9H         LINE#         209
+  C:06F9H         LINE#         210
+  C:0705H         LINE#         211
+  C:0707H         LINE#         213
+  C:0707H         LINE#         214
+  C:071AH         LINE#         215
+  C:071AH         LINE#         216
+  -------         ENDPROC       _CHARLCD_CURSORBLINK
+  -------         PROC          _CHARLCD_SCROLLDISPLAYLEFT
+  D:0001H         SYMBOL        context
+  C:090DH         LINE#         220
+  C:090DH         LINE#         221
+  C:090DH         LINE#         222
+  -------         ENDPROC       _CHARLCD_SCROLLDISPLAYLEFT
+  -------         PROC          _CHARLCD_SCROLLDISPLAYRIGHT
+  D:0001H         SYMBOL        context
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 8
+
+
+  C:0912H         LINE#         227
+  C:0912H         LINE#         228
+  C:0912H         LINE#         229
+  -------         ENDPROC       _CHARLCD_SCROLLDISPLAYRIGHT
+  -------         PROC          _CHARLCD_PRINTRIGHTTOLEFT
+  D:0043H         SYMBOL        context
+  C:082EH         LINE#         234
+  C:0834H         LINE#         235
+  C:0834H         LINE#         236
+  C:0843H         LINE#         237
+  -------         ENDPROC       _CHARLCD_PRINTRIGHTTOLEFT
   -------         PROC          _CHARLCD_PRINTSTRING
   D:0008H         SYMBOL        context
   D:000BH         SYMBOL        msg
   -------         DO            
   D:000EH         SYMBOL        i
   -------         ENDDO         
-  C:06C6H         LINE#         160
-  C:06CCH         LINE#         161
-  C:06CCH         LINE#         162
-  C:06D1H         LINE#         164
-  C:06E3H         LINE#         165
-  C:06E3H         LINE#         166
-  C:06EDH         LINE#         167
-  C:06F5H         LINE#         168
-  C:06F7H         LINE#         169
+  C:07CFH         LINE#         241
+  C:07D5H         LINE#         242
+  C:07D5H         LINE#         243
+  C:07DAH         LINE#         245
+  C:07ECH         LINE#         246
+  C:07ECH         LINE#         247
+  C:07F6H         LINE#         248
+  C:07FEH         LINE#         249
+  C:0800H         LINE#         250
   -------         ENDPROC       _CHARLCD_PRINTSTRING
   -------         PROC          _CHARLCD_PRINTINTEGER
   D:0035H         SYMBOL        context
   D:0038H         SYMBOL        line
   D:0039H         SYMBOL        col
-  C:07B3H         LINE#         172
-  C:07BBH         LINE#         173
-  C:07BBH         LINE#         174
+  C:08CEH         LINE#         253
+  C:08D6H         LINE#         254
+  C:08D6H         LINE#         255
   -------         ENDPROC       _CHARLCD_PRINTINTEGER
   -------         ENDMOD        CHARLCD
 
   -------         MODULE        GPIO
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/29/2019  17:15:01  PAGE 7
-
-
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0080H         PUBLIC        P0
   D:0090H         PUBLIC        P1
@@ -369,102 +467,105 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
-  C:076BH         PUBLIC        _GPIO_TogglePin
+  C:0899H         PUBLIC        _GPIO_TogglePin
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:06F8H         PUBLIC        _GPIO_ReadPin
-  C:0789H         PUBLIC        _GPIO_ModePin
-  C:05A1H         PUBLIC        _GPIO_WritePin
+  C:0801H         PUBLIC        _GPIO_ReadPin
+  C:08B7H         PUBLIC        _GPIO_ModePin
+  C:05FCH         PUBLIC        _GPIO_WritePin
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
   -------         PROC          _GPIO_MODEPIN
   D:000EH         SYMBOL        port
   D:000FH         SYMBOL        pin
   D:0003H         SYMBOL        mode
-  C:0789H         LINE#         25
-  C:078DH         LINE#         26
-  C:078DH         LINE#         27
-  C:0792H         LINE#         28
-  C:0792H         LINE#         29
-  C:0794H         LINE#         30
-  C:0796H         LINE#         32
-  C:0796H         LINE#         33
-  C:079FH         LINE#         34
-  C:079FH         LINE#         35
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 9
+
+
+  C:08B7H         LINE#         25
+  C:08BBH         LINE#         26
+  C:08BBH         LINE#         27
+  C:08C0H         LINE#         28
+  C:08C0H         LINE#         29
+  C:08C2H         LINE#         30
+  C:08C4H         LINE#         32
+  C:08C4H         LINE#         33
+  C:08CDH         LINE#         34
+  C:08CDH         LINE#         35
   -------         ENDPROC       _GPIO_MODEPIN
   -------         PROC          _GPIO_WRITEPIN
   D:0007H         SYMBOL        port
   D:0005H         SYMBOL        pin
   D:0003H         SYMBOL        state
-  C:05A1H         LINE#         38
-  C:05A1H         LINE#         39
-  C:05A1H         LINE#         40
-  C:05A4H         LINE#         41
-  C:05A4H         LINE#         42
-  C:05B2H         LINE#         43
-  C:05B2H         LINE#         44
-  C:05B2H         LINE#         45
-  C:05B6H         LINE#         46
-  C:05B7H         LINE#         47
-  C:05B7H         LINE#         48
-  C:05BBH         LINE#         49
-  C:05BCH         LINE#         50
-  C:05BCH         LINE#         51
-  C:05C0H         LINE#         52
-  C:05C1H         LINE#         53
-  C:05C1H         LINE#         54
-  C:05C5H         LINE#         55
-  C:05C6H         LINE#         56
-  C:05C6H         LINE#         57
-  C:05C6H         LINE#         58
-  C:05C6H         LINE#         59
-  C:05C6H         LINE#         61
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/29/2019  17:15:01  PAGE 8
+  C:05FCH         LINE#         38
+  C:05FCH         LINE#         39
+  C:05FCH         LINE#         40
+  C:05FFH         LINE#         41
+  C:05FFH         LINE#         42
+  C:060DH         LINE#         43
+  C:060DH         LINE#         44
+  C:060DH         LINE#         45
+  C:0611H         LINE#         46
+  C:0612H         LINE#         47
+  C:0612H         LINE#         48
+  C:0616H         LINE#         49
+  C:0617H         LINE#         50
+  C:0617H         LINE#         51
+  C:061BH         LINE#         52
+  C:061CH         LINE#         53
+  C:061CH         LINE#         54
+  C:0620H         LINE#         55
+  C:0621H         LINE#         56
+  C:0621H         LINE#         57
+  C:0621H         LINE#         58
+  C:0621H         LINE#         59
+  C:0621H         LINE#         61
+  C:0621H         LINE#         62
+  C:062FH         LINE#         63
+  C:062FH         LINE#         64
+  C:062FH         LINE#         65
+  C:0632H         LINE#         66
+  C:0633H         LINE#         67
+  C:0633H         LINE#         68
+  C:0636H         LINE#         69
+  C:0637H         LINE#         70
+  C:0637H         LINE#         71
+  C:063AH         LINE#         72
+  C:063BH         LINE#         73
+  C:063BH         LINE#         74
+  C:063EH         LINE#         75
+  C:063EH         LINE#         76
+  C:063EH         LINE#         77
+  C:063EH         LINE#         78
+  C:063EH         LINE#         79
+  C:063EH         LINE#         80
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 10
 
 
-  C:05C6H         LINE#         62
-  C:05D4H         LINE#         63
-  C:05D4H         LINE#         64
-  C:05D4H         LINE#         65
-  C:05D7H         LINE#         66
-  C:05D8H         LINE#         67
-  C:05D8H         LINE#         68
-  C:05DBH         LINE#         69
-  C:05DCH         LINE#         70
-  C:05DCH         LINE#         71
-  C:05DFH         LINE#         72
-  C:05E0H         LINE#         73
-  C:05E0H         LINE#         74
-  C:05E3H         LINE#         75
-  C:05E3H         LINE#         76
-  C:05E3H         LINE#         77
-  C:05E3H         LINE#         78
-  C:05E3H         LINE#         79
-  C:05E3H         LINE#         80
   -------         ENDPROC       _GPIO_WRITEPIN
   -------         PROC          _GPIO_TOGGLEPIN
   D:0007H         SYMBOL        port
   D:0005H         SYMBOL        pin
-  C:076BH         LINE#         83
-  C:076BH         LINE#         84
-  C:076BH         LINE#         85
-  C:0779H         LINE#         86
-  C:0779H         LINE#         87
-  C:0779H         LINE#         88
-  C:077CH         LINE#         89
-  C:077DH         LINE#         90
-  C:077DH         LINE#         91
-  C:0780H         LINE#         92
-  C:0781H         LINE#         93
-  C:0781H         LINE#         94
-  C:0784H         LINE#         95
-  C:0785H         LINE#         96
-  C:0785H         LINE#         97
-  C:0788H         LINE#         98
-  C:0788H         LINE#         99
-  C:0788H         LINE#         100
-  C:0788H         LINE#         101
-  C:0788H         LINE#         102
+  C:0899H         LINE#         83
+  C:0899H         LINE#         84
+  C:0899H         LINE#         85
+  C:08A7H         LINE#         86
+  C:08A7H         LINE#         87
+  C:08A7H         LINE#         88
+  C:08AAH         LINE#         89
+  C:08ABH         LINE#         90
+  C:08ABH         LINE#         91
+  C:08AEH         LINE#         92
+  C:08AFH         LINE#         93
+  C:08AFH         LINE#         94
+  C:08B2H         LINE#         95
+  C:08B3H         LINE#         96
+  C:08B3H         LINE#         97
+  C:08B6H         LINE#         98
+  C:08B6H         LINE#         99
+  C:08B6H         LINE#         100
+  C:08B6H         LINE#         101
+  C:08B6H         LINE#         102
   -------         ENDPROC       _GPIO_TOGGLEPIN
   -------         PROC          _GPIO_READPIN
   D:0007H         SYMBOL        port
@@ -472,35 +573,35 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   -------         DO            
   D:0006H         SYMBOL        state
   -------         ENDDO         
-  C:06F8H         LINE#         105
-  C:06F8H         LINE#         106
-  C:06F8H         LINE#         109
-  C:0706H         LINE#         110
-  C:0706H         LINE#         111
-  C:0706H         LINE#         112
-  C:070AH         LINE#         113
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/29/2019  17:15:01  PAGE 9
-
-
-  C:070CH         LINE#         114
-  C:070CH         LINE#         115
-  C:0710H         LINE#         116
-  C:0712H         LINE#         117
-  C:0712H         LINE#         118
-  C:0716H         LINE#         119
-  C:0718H         LINE#         120
-  C:0718H         LINE#         121
-  C:071CH         LINE#         122
-  C:071CH         LINE#         123
-  C:071CH         LINE#         124
-  C:071CH         LINE#         125
-  C:071CH         LINE#         127
-  C:071FH         LINE#         128
-  C:071FH         LINE#         129
-  C:0722H         LINE#         130
-  C:0722H         LINE#         132
-  C:0724H         LINE#         133
+  C:0801H         LINE#         105
+  C:0801H         LINE#         106
+  C:0801H         LINE#         109
+  C:080FH         LINE#         110
+  C:080FH         LINE#         111
+  C:080FH         LINE#         112
+  C:0813H         LINE#         113
+  C:0815H         LINE#         114
+  C:0815H         LINE#         115
+  C:0819H         LINE#         116
+  C:081BH         LINE#         117
+  C:081BH         LINE#         118
+  C:081FH         LINE#         119
+  C:0821H         LINE#         120
+  C:0821H         LINE#         121
+  C:0825H         LINE#         122
+  C:0825H         LINE#         123
+  C:0825H         LINE#         124
+  C:0825H         LINE#         125
+  C:0825H         LINE#         127
+  C:0828H         LINE#         128
+  C:0828H         LINE#         129
+  C:082BH         LINE#         130
+  C:082BH         LINE#         132
+  C:082DH         LINE#         133
   -------         ENDPROC       _GPIO_READPIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 11
+
+
   -------         ENDMOD        GPIO
 
   -------         MODULE        MC51_LIBRARY
@@ -509,10 +610,10 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
-  C:0691H         PUBLIC        __delay_ms
+  C:079AH         PUBLIC        __delay_ms
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:0749H         PUBLIC        __delay_us
+  C:0877H         PUBLIC        __delay_us
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
   -------         PROC          __DELAY_US
@@ -520,31 +621,28 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   -------         DO            
   D:001DH         SYMBOL        wait_time
   -------         ENDDO         
-  C:0749H         LINE#         25
-  C:0749H         LINE#         26
-  C:0749H         LINE#         29
-  C:075AH         LINE#         30
-  C:0767H         LINE#         31
-  C:0767H         LINE#         32
-  C:0768H         LINE#         33
-  C:076AH         LINE#         34
+  C:0877H         LINE#         25
+  C:0877H         LINE#         26
+  C:0877H         LINE#         29
+  C:0888H         LINE#         30
+  C:0895H         LINE#         31
+  C:0895H         LINE#         32
+  C:0896H         LINE#         33
+  C:0898H         LINE#         34
   -------         ENDPROC       __DELAY_US
   -------         PROC          __DELAY_MS
   D:0004H         SYMBOL        time_ms
   -------         DO            
   D:000EH         SYMBOL        wait_time
   -------         ENDDO         
-  C:0691H         LINE#         36
-  C:0691H         LINE#         37
-  C:0691H         LINE#         40
-  C:06ABH         LINE#         41
-  C:06B8H         LINE#         42
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/29/2019  17:15:01  PAGE 10
-
-
-  C:06B8H         LINE#         43
-  C:06C3H         LINE#         44
-  C:06C5H         LINE#         45
+  C:079AH         LINE#         36
+  C:079AH         LINE#         37
+  C:079AH         LINE#         40
+  C:07B4H         LINE#         41
+  C:07C1H         LINE#         42
+  C:07C1H         LINE#         43
+  C:07CCH         LINE#         44
+  C:07CEH         LINE#         45
   -------         ENDPROC       __DELAY_MS
   -------         ENDMOD        MC51_LIBRARY
 
@@ -561,6 +659,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   -------         MODULE        ?C?CASTF
   C:0147H         PUBLIC        ?C?CASTF
   -------         ENDMOD        ?C?CASTF
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 12
+
+
 
   -------         MODULE        ?C?CLDPTR
   C:01C8H         PUBLIC        ?C?CLDPTR
@@ -593,16 +694,40 @@ SYMBOL TABLE OF MODULE:  .\Objects\charlcd (?C_STARTUP)
   -------         ENDMOD        ?C?LLDIIDATA
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CHARLCD_CLEAR?CHARLCD
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CHARLCD_HOME?CHARLCD
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CHARLCD_DISPLAY?CHARLCD
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CHARLCD_CURSOR?CHARLCD
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CHARLCD_CURSORBLINK?CHARLCD
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CHARLCD_SCROLLDISPLAYLEFT?CHARLCD
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CHARLCD_SCROLLDISPLAYRIGHT?CHARLCD
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CHARLCD_PRINTRIGHTTOLEFT?CHARLCD
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_CHARLCD_PRINTINTEGER?CHARLCD
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/01/2019  16:07:17  PAGE 13
+
+
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPIO_TOGGLEPIN?GPIO
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/29/2019  17:15:01  PAGE 11
-
-
     SEGMENT: ?PR?_GPIO_READPIN?GPIO
 
-Program Size: data=59.0 xdata=0 code=2002
-LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)
+Program Size: data=71.0 xdata=0 code=2327
+LINK/LOCATE RUN COMPLETE.  11 WARNING(S),  0 ERROR(S)
